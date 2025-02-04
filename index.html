@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Quote Generator</title>
+</head>
+<body>
+    <h1>Dynamic Quote Generator</h1>
+    <div id="quoteDisplay"></div>
+    <button id="newQuote">Show New Quote</button>
+    
+    <div>
+        <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+        <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+        <button onclick="addQuote()">Add Quote</button>
+    </div>
+    
+    <script>
+        const quotes = [
+            { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Motivation" },
+            { text: "In the middle of every difficulty lies opportunity.", category: "Inspiration" }
+        ];
+
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById("quoteDisplay").innerText = quotes[randomIndex].text;
+        }
+
+        function addQuote() {
+            const quoteText = document.getElementById("newQuoteText").value;
+            const quoteCategory = document.getElementById("newQuoteCategory").value;
+            
+            if (quoteText && quoteCategory) {
+                quotes.push({ text: quoteText, category: quoteCategory });
+                document.getElementById("newQuoteText").value = "";
+                document.getElementById("newQuoteCategory").value = "";
+                alert("Quote added successfully!");
+            } else {
+                alert("Please enter both quote text and category.");
+            }
+        }
+
+        document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+    </script>
+</body>
+</html>
